@@ -1,0 +1,63 @@
+
+{% extends 'admin/admin.html' %}
+{% block adminbodycontent %}
+
+<style>
+  #enlarge {
+    cursor: pointer; 
+    -webkit-transition-duration: 0.3s; 
+    -webkit-transition-timing-function: ease; 
+    } 
+    
+    /*change the number below to scale to the appropriate size*/ 
+    #enlarge:hover { 
+    transform: scale(5); 
+    
+    }
+</style>
+
+<div class="d-flex justify-content-center mt-2 container">
+
+  
+
+    <table class="table">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">ID</th>
+          <th scope="col">IMAGE</th>
+          <th scope="col">NAME</th>
+          <th scope="col">PRICE</th>
+          <th scope="col">CATEGORY</th>
+          <th scope="col">QUANTITY</th>
+          <th scope="col">DESCRIPTION</th>
+          <th scope="col" colspan="2">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        {% for product in products %}
+        <tr class="text-center">
+          <th>{{product.id}}</th>
+          <td>
+            <img id="enlarge" src="http://127.0.0.1:8000/admin/product/media/{{product.image}}" alt="" width="40px" height="40px">
+          </td>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.category}}</td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.description}}</td>
+          <td>
+            <button type="button" class="btn btn-outline-primary"><i class="bi bi-pencil"></i></button>
+          </td>
+          <td>
+            <a type="button" class="btn btn-outline-danger" href="/admin/product/delete/{{product.id}}"><i class="bi bi-trash"></i></a>
+          </td>
+        </tr> 
+
+        {% endfor %}
+      </tbody>
+    </table>
+   
+  
+</div>
+ {% endblock adminbodycontent %} 
